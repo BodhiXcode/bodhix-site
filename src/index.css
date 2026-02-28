@@ -1,0 +1,34 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Interactive Parallax Dotted Grid Background */
+body::before {
+  content: "";
+  position: fixed;
+  top: -5vh;
+  left: -5vw;
+  width: 110vw;
+  height: 110vh;
+  z-index: -1;
+  background-image: radial-gradient(var(--dot-color, rgba(255, 255, 255, 0.2)) 1.5px, transparent 1.5px);
+  background-size: 30px 30px;
+  background-position: 0 0;
+  pointer-events: none;
+
+  /* Smooth parallax movement opposite to the mouse direction */
+  transform: translate(calc(var(--mouse-x, 50vw) * -0.02),
+      calc(var(--mouse-y, 50vh) * -0.02));
+
+  /* Spotlight effect illuminating only the dots near the cursor */
+  -webkit-mask-image: radial-gradient(circle 500px at calc(var(--mouse-x, 50vw) + 5vw) calc(var(--mouse-y, 50vh) + 5vh), black 0%, transparent 100%);
+  mask-image: radial-gradient(circle 500px at calc(var(--mouse-x, 50vw) + 5vw) calc(var(--mouse-y, 50vh) + 5vh), black 0%, transparent 100%);
+
+  transition: transform 0.1s ease-out;
+}

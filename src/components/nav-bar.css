@@ -1,0 +1,25 @@
+.nav-logo {
+    border-radius: 100%;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 16px 32px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.info,
+.theme-action {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.name {
+    font-weight: bold;
+}

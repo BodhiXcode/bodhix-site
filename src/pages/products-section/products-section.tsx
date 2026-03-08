@@ -1,5 +1,7 @@
-import { Box, Card, CardContent, Container, Typography, Chip, Tabs, Tab } from "@mui/material";
+import { Box, Card, CardContent, Container, Typography, Chip, Tabs, Tab, Button } from "@mui/material";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import bodhiLeafIcon from "../../assets/bodhi-leaf-ui/icon-128.png";
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -37,6 +39,7 @@ function a11yProps(prefix: string, index: number) {
 export default function ProductsSection() {
     const [browserTab, setBrowserTab] = useState(0);
     const [extTab, setExtTab] = useState(0);
+    const navigate = useNavigate();
 
     const handleBrowserChange = (_event: React.SyntheticEvent, newValue: number) => {
         setBrowserTab(newValue);
@@ -133,10 +136,64 @@ export default function ProductsSection() {
                     <Card sx={{ display: 'flex', flexDirection: 'column' }}>
                         <CardContent sx={{ p: { xs: 4, md: 6 } }}>
                             <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: 2, mb: 4 }}>
-                                <Typography variant="h5" color="textPrimary" sx={{ fontWeight: 700 }}>
-                                    Bodhi Leaf
-                                </Typography>
-                                <Chip label="Consumer AI Wrapper" color="secondary" variant="outlined" />
+                                <Box>
+                                    <Typography variant="h5" color="textPrimary" sx={{ fontWeight: 700, mb: 1 }}>
+                                        Bodhi Leaf
+                                    </Typography>
+                                    <Chip label="Consumer AI Wrapper" color="secondary" variant="outlined" />
+                                </Box>
+                                <Box sx={{ position: 'relative' }}>
+                                    <Typography
+                                        variant="caption"
+                                        sx={{
+                                            position: 'absolute',
+                                            top: -14,
+                                            right: -8,
+                                            bgcolor: '#FF4400',
+                                            color: '#fff',
+                                            px: 1,
+                                            py: 0.2,
+                                            borderRadius: 1,
+                                            fontSize: '0.65rem',
+                                            fontWeight: 900,
+                                            textTransform: 'uppercase',
+                                            boxShadow: '0 4px 8px rgba(255, 68, 0, 0.3)',
+                                            zIndex: 1,
+                                            whiteSpace: 'nowrap'
+                                        }}
+                                    >
+                                        Newly Launched
+                                    </Typography>
+                                    <Button
+                                        variant="outlined"
+                                        onClick={() => navigate('/bodhi-leaf')}
+                                        startIcon={
+                                            <Box
+                                                component="img"
+                                                src={bodhiLeafIcon}
+                                                alt=""
+                                                sx={{ width: 20, height: 20 }}
+                                            />
+                                        }
+                                        sx={{
+                                            fontWeight: 700,
+                                            px: 3,
+                                            borderRadius: 2,
+                                            alignSelf: 'flex-start',
+                                            flexShrink: 0,
+                                            borderColor: '#FF4400',
+                                            color: '#FF4400',
+                                            '&:hover': {
+                                                borderColor: '#e63d00',
+                                                bgcolor: 'rgba(255, 68, 0, 0.05)',
+                                                transform: 'translateY(-2px)'
+                                            },
+                                            transition: '0.2s'
+                                        }}
+                                    >
+                                        Use Now
+                                    </Button>
+                                </Box>
                             </Box>
 
                             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>

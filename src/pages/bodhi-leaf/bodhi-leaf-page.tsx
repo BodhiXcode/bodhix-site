@@ -1,7 +1,4 @@
 import { Box, Container, Typography, Button, Paper, Stack, Chip, Grid, useTheme } from "@mui/material";
-import DownloadIcon from '@mui/icons-material/Download';
-import SettingsIcon from '@mui/icons-material/Settings';
-import FolderOpenIcon from '@mui/icons-material/FolderOpen';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import AccessibleIcon from '@mui/icons-material/Accessible';
@@ -19,34 +16,9 @@ export default function BodhiLeafPage() {
     const navigate = useNavigate();
     const theme = useTheme();
     const isDark = theme.palette.mode === 'dark';
-
-    const steps = [
-        {
-            title: "Download & Unzip",
-            description: "Download the ZIP and extract it. Inside, you will see a 'dist' folder.",
-            icon: <DownloadIcon sx={{ fontSize: 24 }} />,
-            step: "01"
-        },
-        {
-            title: "Developer Mode",
-            description: "Go to chrome://extensions and toggle 'Developer mode' ON.",
-            icon: <SettingsIcon sx={{ fontSize: 24 }} />,
-            cmd: "chrome://extensions",
-            step: "02"
-        },
-        {
-            title: "Load Unpacked",
-            description: "Click 'Load unpacked' and select the 'dist' folder from the unzipped files.",
-            icon: <FolderOpenIcon sx={{ fontSize: 24 }} />,
-            step: "03"
-        },
-        {
-            title: "Start Using",
-            description: "Click the Bodhi Leaf icon on any Amazon product page.",
-            icon: <PlayArrowIcon sx={{ fontSize: 24 }} />,
-            step: "04"
-        }
-    ];
+    const storeLink = "https://chromewebstore.google.com/detail/bodhi-leaf-acc/olgganmcclodiinblfiohaiodobkpnog";
+    const brandColor = "#00c4aa";
+    const brandHover = "#00ab94";
 
     const features = [
         { title: "🔍 Product Details", desc: "Title, brand, price, savings, delivery, specs, reviews extracted instantly." },
@@ -76,14 +48,15 @@ export default function BodhiLeafPage() {
                     backdropFilter: 'blur(20px)',
                     borderBottom: `1px solid ${isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)'}`,
                     bgcolor: isDark ? 'rgba(10, 10, 10, 0.8)' : 'rgba(250, 250, 250, 0.8)',
-                    px: { xs: 2, md: 4 },
+                    px: { xs: 1.5, md: 4 },
                     py: 1.5,
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
+                    gap: 1
                 }}
             >
-                <Stack direction="row" spacing={2} alignItems="center">
+                <Stack direction="row" spacing={{ xs: 0.5, sm: 2 }} alignItems="center">
                     <Button
                         startIcon={<ArrowBackIcon />}
                         onClick={() => navigate('/')}
@@ -91,10 +64,12 @@ export default function BodhiLeafPage() {
                             color: 'text.secondary',
                             textTransform: 'none',
                             fontWeight: 500,
+                            minWidth: { xs: 'auto', sm: '100px' },
+                            '& .MuiButton-startIcon': { mr: { xs: 0, sm: 1 } },
                             '&:hover': { color: 'text.primary' }
                         }}
                     >
-                        Back
+                        <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>Back</Box>
                     </Button>
                     <ThemeToggler />
                 </Stack>
@@ -102,17 +77,20 @@ export default function BodhiLeafPage() {
                 <Button
                     variant="contained"
                     size="small"
-                    startIcon={<DownloadIcon />}
-                    href="/bodhiLeaf.zip"
-                    download
+                    startIcon={<PlayArrowIcon />}
+                    href={storeLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     sx={{
-                        bgcolor: '#FF4400',
+                        bgcolor: brandColor,
                         color: '#fff',
                         fontWeight: 700,
-                        '&:hover': { bgcolor: '#e63d00' }
+                        px: { xs: 1.5, sm: 3 },
+                        fontSize: { xs: '0.75rem', sm: '0.875rem' },
+                        '&:hover': { bgcolor: brandHover }
                     }}
                 >
-                    Download ZIP
+                    Add to Chrome
                 </Button>
             </Box>
 
@@ -120,93 +98,55 @@ export default function BodhiLeafPage() {
                 {/* Hero Section */}
                 <Box sx={{ mb: 12, textAlign: 'center' }}>
                     <Chip
-                        label="CHROME EXTENSION"
+                        label="OFFICIALLY RELEASED"
                         sx={{
                             mb: 3,
                             fontWeight: 800,
-                            bgcolor: 'rgba(255, 68, 0, 0.1)',
-                            color: '#FF4400',
-                            border: '1px solid rgba(255, 68, 0, 0.2)'
+                            bgcolor: isDark ? `rgba(0, 196, 170, 0.1)` : `rgba(0, 196, 170, 0.05)`,
+                            color: brandColor,
+                            border: `1px solid rgba(0, 196, 170, 0.2)`
                         }}
                     />
                     <Typography variant="h1" sx={{ mb: 2, fontSize: { xs: '2.5rem', md: '4rem' } }}>
                         Bodhi Leaf
                     </Typography>
                     <Typography variant="h5" sx={{ mb: 4, color: 'text.secondary', maxWidth: 700, mx: 'auto', fontWeight: 400 }}>
-                        Your AI-powered shopping companion. Transform Amazon browsing into an intelligent commerce experience.
+                        Your AI-powered shopping companion. Transform e-commerce browsing into an intelligent experience (currently supporting Amazon).
                     </Typography>
 
                     <Box sx={{ mb: 6, maxWidth: 600, mx: 'auto' }}>
-                        <Paper sx={{ p: 2, bgcolor: isDark ? 'rgba(255, 68, 0, 0.05)' : 'rgba(255, 68, 0, 0.02)', border: '1px solid rgba(255, 68, 0, 0.2)', borderRadius: 2 }}>
-                            <Typography variant="body2" sx={{ color: '#FF4400', fontWeight: 600, mb: 1 }}>
-                                🛠️ Prototyping Phase Notice
+                        <Paper sx={{ p: 2, bgcolor: isDark ? `rgba(0, 196, 170, 0.05)` : `rgba(0, 196, 170, 0.02)`, border: `1px solid rgba(0, 196, 170, 0.2)`, borderRadius: 2 }}>
+                            <Typography variant="body2" sx={{ color: brandColor, fontWeight: 600, mb: 1 }}>
+                                ✨ Now available on Chrome Web Store
                             </Typography>
                             <Typography variant="body2" sx={{ color: 'text.secondary', lineHeight: 1.6 }}>
-                                Manual download is required during this prototyping phase as the extension is currently under review by Google. Direct installation from the Chrome Web Store will be available soon!
+                                No more manual installation! You can now directly add Bodhi Leaf to your browser with a single click. Thank you for using our product!
                             </Typography>
                         </Paper>
                         <Typography variant="body2" sx={{ mt: 3, color: 'text.secondary', opacity: 0.7, fontStyle: 'italic' }}>
-                            "Really thanks for taking out time and using our product, we are really happy!"
+                            "Thank you so much for taking the time to use our product, we are really happy!"
                         </Typography>
                     </Box>
 
                     <Button
                         variant="contained"
                         size="large"
-                        href="/bodhiLeaf.zip"
-                        download
+                        href={storeLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         sx={{
                             px: 5,
                             py: 1.5,
-                            bgcolor: '#FF4400',
+                            bgcolor: brandColor,
                             color: '#fff',
                             fontWeight: 800,
                             borderRadius: 2,
-                            boxShadow: '0 8px 24px rgba(255, 68, 0, 0.3)',
-                            '&:hover': { bgcolor: '#e63d00', boxShadow: '0 12px 32px rgba(255, 68, 0, 0.4)' }
+                            boxShadow: `0 8px 24px rgba(0, 196, 170, 0.3)`,
+                            '&:hover': { bgcolor: brandHover, boxShadow: `0 12px 32px rgba(0, 196, 170, 0.4)` }
                         }}
                     >
-                        Download Extension
+                        Add to Chrome
                     </Button>
-                </Box>
-
-                {/* Installation Steps */}
-                <Box sx={{ mb: 10 }}>
-                    <Typography variant="h4" sx={{ mb: 4, fontWeight: 700, textAlign: 'center' }}>
-                        Installation Guide
-                    </Typography>
-                    <Grid container spacing={2}>
-                        {steps.map((step, index) => (
-                            <Grid key={index} size={{ xs: 12, sm: 6, md: 3 }}>
-                                <Paper
-                                    sx={{
-                                        p: 2.5,
-                                        height: '100%',
-                                        bgcolor: 'background.paper',
-                                        border: `1px solid ${isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)'}`,
-                                        borderRadius: 3,
-                                        transition: '0.3s',
-                                        '&:hover': { borderColor: '#FF4400', transform: 'translateY(-4px)' }
-                                    }}
-                                >
-                                    <Box sx={{ color: '#FF4400', mb: 1.5 }}>{step.icon}</Box>
-                                    <Typography variant="h6" sx={{ mb: 0.5, fontSize: '0.95rem', fontWeight: 700 }}>
-                                        {step.step}. {step.title}
-                                    </Typography>
-                                    <Typography variant="body2" sx={{ color: 'text.secondary', mb: 1.5, fontSize: '0.85rem' }}>
-                                        {step.description}
-                                    </Typography>
-                                    {step.cmd && (
-                                        <Box sx={{ p: 0.8, bgcolor: isDark ? '#000' : '#f0f0f0', borderRadius: 1, border: `1px solid ${isDark ? '#333' : '#ddd'}` }}>
-                                            <Typography variant="caption" sx={{ fontFamily: 'monospace', color: '#FF4400', fontSize: '0.7rem' }}>
-                                                {step.cmd}
-                                            </Typography>
-                                        </Box>
-                                    )}
-                                </Paper>
-                            </Grid>
-                        ))}
-                    </Grid>
                 </Box>
 
                 {/* Feature Gallery */}
@@ -270,21 +210,21 @@ export default function BodhiLeafPage() {
                     </Typography>
                     <Grid container spacing={4} alignItems="center">
                         <Grid size={{ xs: 12, md: 6 }}>
-                            <Paper sx={{ overflow: 'hidden', borderRadius: 4, border: '1px solid rgba(255, 68, 0, 0.2)' }}>
+                            <Paper sx={{ overflow: 'hidden', borderRadius: 4, border: `1px solid rgba(0, 196, 170, 0.2)` }}>
                                 <Box component="img" src={accessibilityImg} sx={{ width: '100%', height: 'auto', display: 'block' }} />
                             </Paper>
                         </Grid>
                         <Grid size={{ xs: 12, md: 6 }}>
                             <Stack spacing={3}>
                                 <Box>
-                                    <Chip icon={<AccessibleIcon sx={{ color: '#fff !important' }} />} label="Accessibility First" sx={{ mb: 2, bgcolor: '#FF4400', color: '#fff' }} />
+                                    <Chip icon={<AccessibleIcon sx={{ color: '#fff !important' }} />} label="Accessibility First" sx={{ mb: 2, bgcolor: brandColor, color: '#fff' }} />
                                     <Typography variant="h5" sx={{ fontWeight: 800, mb: 1 }}>Designed for Everyone</Typography>
                                     <Typography variant="body1" color="text.secondary">
                                         Bodhi Leaf includes specialized modes for color blindness, dyslexia-friendly fonts, and high-contrast visuals to ensure smart shopping is accessible to all.
                                     </Typography>
                                 </Box>
                                 <Box>
-                                    <Typography variant="h6" sx={{ fontWeight: 700, color: '#FF4400' }}>Voice Guided Experience</Typography>
+                                    <Typography variant="h6" sx={{ fontWeight: 700, color: brandColor }}>Voice Guided Experience</Typography>
                                     <Typography variant="body2" color="text.secondary">
                                         Integrated with Amazon Polly to provide natural voice insights in multiple regional languages.
                                     </Typography>
@@ -307,17 +247,17 @@ export default function BodhiLeafPage() {
                                         p: 3,
                                         height: '100%',
                                         bgcolor: 'background.paper',
-                                        border: `1px solid ${isDark ? 'rgba(255, 68, 0, 0.1)' : 'rgba(0, 0, 0, 0.05)'}`,
+                                        border: `1px solid ${isDark ? 'rgba(0, 196, 170, 0.1)' : 'rgba(0, 0, 0, 0.05)'}`,
                                         borderRadius: 3,
                                         transition: 'all 0.3s ease',
                                         '&:hover': {
                                             transform: 'translateY(-5px)',
                                             boxShadow: isDark ? '0 10px 30px rgba(0,0,0,0.5)' : '0 10px 20px rgba(0,0,0,0.05)',
-                                            borderColor: '#FF4400'
+                                            borderColor: brandColor
                                         }
                                     }}
                                 >
-                                    <Typography variant="subtitle1" sx={{ fontWeight: 800, color: '#FF4400', mb: 1.5, display: 'flex', alignItems: 'center', gap: 1 }}>
+                                    <Typography variant="subtitle1" sx={{ fontWeight: 800, color: brandColor, mb: 1.5, display: 'flex', alignItems: 'center', gap: 1 }}>
                                         {feature.title}
                                     </Typography>
                                     <Typography variant="body2" sx={{ color: 'text.secondary', lineHeight: 1.6 }}>
@@ -336,7 +276,7 @@ export default function BodhiLeafPage() {
                         borderRadius: 6,
                         textAlign: 'center',
                         bgcolor: 'background.paper',
-                        border: '1px solid rgba(255, 68, 0, 0.2)',
+                        border: `1px solid rgba(0, 196, 170, 0.2)`,
                         boxShadow: isDark ? '0 20px 40px rgba(0,0,0,0.4)' : '0 20px 40px rgba(0,0,0,0.05)'
                     }}
                 >
@@ -349,19 +289,20 @@ export default function BodhiLeafPage() {
                     <Button
                         variant="contained"
                         size="large"
-                        href="/bodhiLeaf.zip"
-                        download
+                        href={storeLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         sx={{
                             px: 6,
                             py: 2,
-                            bgcolor: '#FF4400',
+                            bgcolor: brandColor,
                             color: '#fff',
                             fontWeight: 800,
                             borderRadius: 2,
-                            '&:hover': { bgcolor: '#e63d00' }
+                            '&:hover': { bgcolor: brandHover }
                         }}
                     >
-                        Download Now
+                        Add to Chrome
                     </Button>
                 </Box>
             </Container>

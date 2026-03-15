@@ -140,7 +140,7 @@ export default function ProductsSection() {
                                     <Typography variant="h5" color="textPrimary" sx={{ fontWeight: 700, mb: 1 }}>
                                         Bodhi Leaf
                                     </Typography>
-                                    <Chip label="Consumer AI Wrapper" color="secondary" variant="outlined" />
+                                    <Chip label="Consumer AI Wrapper" sx={{ color: '#00c4aa', borderColor: '#00c4aa' }} variant="outlined" />
                                 </Box>
                                 <Box sx={{ position: 'relative' }}>
                                     <Typography
@@ -149,15 +149,15 @@ export default function ProductsSection() {
                                             position: 'absolute',
                                             top: -14,
                                             right: -8,
-                                            bgcolor: '#FF4400',
+                                            bgcolor: '#00c4aa',
                                             color: '#fff',
                                             px: 1,
                                             py: 0.2,
                                             borderRadius: 1,
-                                            fontSize: '0.65rem',
+                                            fontSize: { xs: '0.6rem', sm: '0.65rem' },
                                             fontWeight: 900,
                                             textTransform: 'uppercase',
-                                            boxShadow: '0 4px 8px rgba(255, 68, 0, 0.3)',
+                                            boxShadow: '0 4px 8px rgba(0, 196, 170, 0.3)',
                                             zIndex: 1,
                                             whiteSpace: 'nowrap'
                                         }}
@@ -172,7 +172,10 @@ export default function ProductsSection() {
                                                 component="img"
                                                 src={bodhiLeafIcon}
                                                 alt=""
-                                                sx={{ width: 20, height: 20 }}
+                                                sx={{ 
+                                                    width: 20, 
+                                                    height: 20
+                                                }}
                                             />
                                         }
                                         sx={{
@@ -181,11 +184,11 @@ export default function ProductsSection() {
                                             borderRadius: 2,
                                             alignSelf: 'flex-start',
                                             flexShrink: 0,
-                                            borderColor: '#FF4400',
-                                            color: '#FF4400',
+                                            borderColor: '#00c4aa',
+                                            color: '#00c4aa',
                                             '&:hover': {
-                                                borderColor: '#e63d00',
-                                                bgcolor: 'rgba(255, 68, 0, 0.05)',
+                                                borderColor: '#00ab94',
+                                                bgcolor: 'rgba(0, 196, 170, 0.05)',
                                                 transform: 'translateY(-2px)'
                                             },
                                             transition: '0.2s'
